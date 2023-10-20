@@ -1,0 +1,9 @@
+.whole-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .element {
+    flex: 1; /* Distribute available space equally among elements */
+    margin: 35px; /* Add margin to create space between elements */
+  }

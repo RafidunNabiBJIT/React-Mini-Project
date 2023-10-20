@@ -1,0 +1,35 @@
+
+body {
+    font-family: 'SF Pro', sans-serif;
+  }
+  
+  h1, h2, h3 {
+    font-family: 'SF Pro Medium', sans-serif;
+  }
+  
+  .bold-text {
+    font-family: 'SF Pro Bold', sans-serif;
+  }
+  
+  /* @font-face rules for SF Pro */
+  @font-face {
+    font-family: 'SF Pro';
+    src: url('../sf-font/sf-pro-display_regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'SF Pro Medium';
+    src: url('../sf-font/sf-pro-display_medium.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'SF Pro Bold';
+    src: url('../sf-font/sf-pro-display_bold.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+  }
+  

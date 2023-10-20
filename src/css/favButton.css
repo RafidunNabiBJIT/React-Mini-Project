@@ -1,0 +1,10 @@
+  
+  .heart-icon {
+    color: #FF6347;
+    transition: color 0.3s; /* Smooth transition for the fill property */
+  }
+  
+  .favorite-button:hover .heart-icon {
+    fill: #FF6347;
+  }
+  

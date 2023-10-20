@@ -1,0 +1,17 @@
+.orange-button {
+	display: flex;
+	justify-content: center;
+	background-color: #FF6347;
+	color: white;
+	border: 2px solid;
+    width: 85px;
+	padding-top: 8px;
+	padding-bottom: 8px; 
+	border-radius : 8px;
+	cursor: pointer;
+}
+.orange-button:hover {
+	background-color: white;
+	border: 2px solid #FF6347;
+	color: #FF6347;
+}

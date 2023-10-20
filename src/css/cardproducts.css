@@ -1,0 +1,18 @@
+  .cardp-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Allow cards to wrap to the next line when overflowing */
+    gap: 20px; /* Add spacing between cards */
+  }
+  .cardp:hover {
+    transform: scale(1.03); /* Optional: Add a slight zoom effect on hover */
+    transition: transform 0.3s ease;
+  }
+
+  .product-title {
+    font-weight: bold;
+  }
+  
+  .product-price {
+    color: #FF6347;
+  }

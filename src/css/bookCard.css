@@ -1,0 +1,24 @@
+
+.book-card {
+    background-color: white;
+    border-radius: 10px; /* Adjust the border radius as needed */
+    box-shadow: 10px 12px 14px rgba(0, 0, 0, 0.05); /* Box shadow for a subtle shadow effect */
+    margin: 15px; /* Add margin to create space between cards */
+    height: 550px;
+    width: 300px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .book-card:hover {
+    transform: scale(1.03); /* Optional: Add a slight zoom effect on hover */
+    transition: transform 0.3s ease;
+  }
+
+  

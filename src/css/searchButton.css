@@ -1,0 +1,28 @@
+
+.search-input {
+    width: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    margin-right: 10px;
+    border: none; /* Remove border */
+    outline: none;
+  }
+  
+  .search-input.visible {
+    width: 150px; /* Adjust the width as needed */
+    opacity: 1;
+    visibility: visible;
+    margin-right: 10px;
+  }
+  .search-inner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .search-button:hover {
+    transform: scale(1.1); /* Adjust the scale factor as needed */
+    transition: transform 0.2s ease;
+  }
+  
