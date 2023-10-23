@@ -32,7 +32,7 @@ const Login = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        marginBottom: "200px",
+        marginBottom: "170px",
         width: "300px",
       }}
     >

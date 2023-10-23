@@ -11,7 +11,7 @@ const ProductDetails = () => {
       const data = resp.data;
       setProductDetails(data);
     });
-  }, []);
+  }, [productDetails]);
 
   return (
     <div

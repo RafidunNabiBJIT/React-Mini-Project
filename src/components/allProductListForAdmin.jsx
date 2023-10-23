@@ -4,14 +4,29 @@ import "../css/wholeContainer.css";
 import "../css/orangeButton.css";
 import "../css/bookCard.css";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 import axiosInstance from "../utils/axiosInstance";
-const AllProductList = ({ products, fetchProducts, loading }) => {
+const AllProductListForAdmin = ({ products, fetchProducts, loading }) => {
   const navigate = useNavigate();
 
   if (loading) {
     return <p>Loading...</p>;
   }
+
+  const handleDeleteBook = (bookId) => {
+    axiosInstance
+      .delete(`books/delete/${bookId}`)
+      .then((resp) => {
+        console.log("Book deleted successfully.");
+        fetchProducts();
+      })
+      .catch((error) => {
+        console.log("Error deleting book: ", error);
+      });
+  };
+
+  const handleUpdateBook = (bookId) => {
+    navigate(`/updateBook/${bookId}`);
+  };
 
   return (
     <div className="whole-container">
@@ -33,9 +48,26 @@ const AllProductList = ({ products, fetchProducts, loading }) => {
             <button
               onClick={() => navigate(`/${product.id}`)}
               className="orange-button"
+              style={{ width: "80px" }}
             >
               Details
             </button>
+            <div className="whole-container">
+              <button
+                onClick={() => handleDeleteBook(product.id)}
+                className="orange-button"
+                style={{ width: "80px" }}
+              >
+                Delete
+              </button>
+              <button
+                onClick={() => handleUpdateBook(product.id)}
+                className="orange-button"
+                style={{ width: "80px" }}
+              >
+                Update
+              </button>
+            </div>
           </div>
         ))}
       </div>
@@ -43,4 +75,4 @@ const AllProductList = ({ products, fetchProducts, loading }) => {
   );
 };
 
-export default AllProductList;
+export default AllProductListForAdmin;

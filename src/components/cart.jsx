@@ -27,7 +27,7 @@ function Cart() {
           src={CartImg}
           alt="Cart Image"
           style={{
-            borderRadius: "35px 0 0 35px",
+            borderRadius: "14px 0 0 14px",
             width: "300px",
             height: "320px",
           }}

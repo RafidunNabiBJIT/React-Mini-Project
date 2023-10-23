@@ -16,6 +16,8 @@ import SearchPage from "./pages/searchPage";
 import AdminPanel from "./pages/adminPanelPage";
 import AdminPanelAllUser from "./pages/adminPanelAllUser";
 import BookForm from "./components/modifyBooks/createBooksAdmin";
+import AllProductList from "./components/allProductList";
+import UpdateBookForm from "./components/modifyBooks/updateBooksAdmin";
 
 function App() {
   return (
@@ -34,6 +36,7 @@ function App() {
             <Route path="/search" element={<SearchPage />} />
             <Route path="*" element={<NotFoundPage />} />
             <Route path="/createBook" element={<BookForm />} />
+            <Route path="/updateBook/:bookId" element={<UpdateBookForm />} />
           </Route>
         </Routes>
       </div>

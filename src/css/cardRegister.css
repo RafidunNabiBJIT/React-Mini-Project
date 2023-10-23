@@ -1,6 +1,6 @@
 .card-register {
     background-color: white;
-    border-radius: 35px; /* Adjust the border radius as needed */
+    border-radius: 10px; /* Adjust the border radius as needed */
     box-shadow: 0px 12px 14px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle shadow effect */
     margin: 15px; /* Add margin to create space between cards */
     height: 650px;

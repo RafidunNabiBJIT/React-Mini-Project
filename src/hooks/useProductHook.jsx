@@ -58,6 +58,7 @@ const useProductHook = () => {
     addToCart,
     addToFavorites,
     removeItem,
+    showAllProducts,
     fetchProducts,
   };
 };

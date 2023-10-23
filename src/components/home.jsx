@@ -16,8 +16,10 @@ function Home() {
     addToCart,
     addToFavorites,
     removeItem,
+    showAllProducts,
     fetchProducts,
   } = useProductHook();
+
   return (
     <div className="container">
       <div className="container">
@@ -53,9 +55,12 @@ function Home() {
       <div className="whole-container">
         <FetchButton fetchProducts={fetchProducts} />
       </div>
-
       <div className="whole-container">
-        <AllProductList products={products} loading={loading} />
+        <AllProductList
+          products={products}
+          fetchProducts={fetchProducts}
+          loading={loading}
+        />
       </div>
     </div>
   );

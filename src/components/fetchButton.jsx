@@ -1,5 +1,7 @@
 import "../css/orangeButton.css";
+import useProductHook from "../hooks/useProductHook";
 const FetchButton = ({ fetchProducts }) => {
+
   const handleClick = () => {
     fetchProducts();
   };
