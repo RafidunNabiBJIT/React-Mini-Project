@@ -4,8 +4,6 @@ import "../css/wholeContainer.css";
 import "../css/orangeButton.css";
 import "../css/bookCard.css";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-import axiosInstance from "../utils/axiosInstance";
 const AllProductList = ({ products, fetchProducts, loading }) => {
   const navigate = useNavigate();
 
@@ -33,6 +31,7 @@ const AllProductList = ({ products, fetchProducts, loading }) => {
             <button
               onClick={() => navigate(`/${product.id}`)}
               className="orange-button"
+              style={{ width: "110px" }}
             >
               Details
             </button>

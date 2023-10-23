@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axiosInstance from "../../utils/axiosInstance";
 import "../../css/orangeButton.css";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function UpdateBookForm() {
   const navigate = useNavigate();
@@ -41,9 +43,7 @@ function UpdateBookForm() {
       .then((resp) => {
         console.log("Book updated successfully");
         navigate("/adminpanel");
-        toast.success("Book updated successfully", {
-          autoClose: 3000,
-        });
+        toast.success("Updated successfully");
       })
       .catch((error) => {
         console.log("Error updating book: ", error);

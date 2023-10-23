@@ -16,8 +16,9 @@ import SearchPage from "./pages/searchPage";
 import AdminPanel from "./pages/adminPanelPage";
 import AdminPanelAllUser from "./pages/adminPanelAllUser";
 import BookForm from "./components/modifyBooks/createBooksAdmin";
-import AllProductList from "./components/allProductList";
 import UpdateBookForm from "./components/modifyBooks/updateBooksAdmin";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-bootstrap";
 
 function App() {
   return (
@@ -39,6 +40,11 @@ function App() {
             <Route path="/updateBook/:bookId" element={<UpdateBookForm />} />
           </Route>
         </Routes>
+        <ToastContainer
+          position="top-center"
+          autoClose={2000}
+          pauseOnHover={false}
+        />
       </div>
       <Footer />
     </div>
