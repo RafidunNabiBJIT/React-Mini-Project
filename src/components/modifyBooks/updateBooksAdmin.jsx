@@ -11,6 +11,7 @@ function UpdateBookForm() {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [imgUrl, setImgUrl] = useState("");
+  const [description, setDescription] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
 
@@ -22,6 +23,7 @@ function UpdateBookForm() {
         setTitle(bookData.title);
         setAuthor(bookData.author);
         setImgUrl(bookData.imgUrl);
+        setImgUrl(bookData.description);
       })
       .catch((error) => {
         console.log("Error fetching book data: ", error);
@@ -36,6 +38,7 @@ function UpdateBookForm() {
       title: title,
       author: author,
       imgUrl: imgUrl,
+      description: description,
     };
 
     axiosInstance
@@ -52,10 +55,19 @@ function UpdateBookForm() {
   };
 
   return (
-    <div>
+    <div
+      className="container mt-5"
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        marginBottom: "170px",
+        width: "500px",
+      }}
+    >
       <h2>Update Book</h2>
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
+        <div className="form-group" style={{ width: "500px" }}>
           <label htmlFor="title">Title:</label>
           <input
             type="text"
@@ -88,7 +100,22 @@ function UpdateBookForm() {
             className="form-control"
           />
         </div>
-        <button type="submit" className="orange-button">
+        <div className="form-group">
+          <label htmlFor="description">Description</label>
+          <input
+            type="text"
+            id="description"
+            name="description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            className="form-control"
+          />
+        </div>
+        <button
+          type="submit"
+          className="orange-button"
+          style={{ width: "150px", marginTop: "20px" }}
+        >
           Update Book
         </button>
       </form>

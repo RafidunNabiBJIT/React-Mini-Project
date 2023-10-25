@@ -6,9 +6,9 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useContext } from "react";
 import { ProductContext } from "./home";
-import { ProductContext2 } from "./publicHome";
-function Cart() {
-  const { cart, removeItem } = useContext(ProductContext2);
+
+function CartForCustomer() {
+  const { cart, removeItem } = useContext(ProductContext);
   console.log(cart);
   const [totalPrice, setTotalPrice] = useState(0);
   const handleRemove = (item) => {
@@ -34,11 +34,11 @@ function Cart() {
           }}
         />
         <div style={{ marginRight: "40px" }}>
-          <h2
+          <h3
             style={{ margin: "20px", position: "sticky", background: "white" }}
           >
-            Cart
-          </h2>
+            Borrow Unlimited Items
+          </h3>
           <div
             className="container"
             style={{
@@ -87,14 +87,10 @@ function Cart() {
               </ul>
             )}
           </div>
-
-          <div>
-            <p style={{ marginLeft: "20px" }}>Total Price: ${totalPrice}</p>
-          </div>
         </div>
       </div>
     </div>
   );
 }
 
-export default Cart;
+export default CartForCustomer;

@@ -1,10 +1,30 @@
 import ProductCard from "../components/productCard";
 function ProductList({ addToCart, addToFavorites }) {
   const products = [
-    { id: 1, name: "Fire Hydrant", price: 140, image: "images/guiter1.jpg" },
-    { id: 3, name: "Bag", price: 20, image: "images/bags.jpg" },
-    { id: 2, name: "Guitar", price: 200, image: "images/guiter2.jpg" },
-    { id: 4, name: "Scooter", price: 300, image: "images/scooter.jpg" },
+    {
+      id: 1,
+      name: "Fire Hydrant",
+      price: 140,
+      image: "https://m.media-amazon.com/images/I/71ZMu13smGL._SL1500_.jpg",
+    },
+    {
+      id: 3,
+      name: "Bag",
+      price: 20,
+      image: "https://m.media-amazon.com/images/I/81BCL8PSkOL._SL1500_.jpg",
+    },
+    {
+      id: 2,
+      name: "Guitar",
+      price: 200,
+      image: "https://m.media-amazon.com/images/I/61MjPg8vxeL._SL1500_.jpg",
+    },
+    {
+      id: 4,
+      name: "Scooter",
+      price: 300,
+      image: "https://m.media-amazon.com/images/I/71psgHw2R4L._SL1500_.jpg",
+    },
   ];
   return (
     <div>

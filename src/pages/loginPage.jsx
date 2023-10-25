@@ -21,7 +21,13 @@ const Login = () => {
 
       console.log("Response from login ", data);
       localStorage.setItem("token", data.token);
-      navigate("/adminpanel");
+      localStorage.setItem("role", data.role);
+      localStorage.setItem("id", data.id);
+      if (data.role === "CUSTOMER") {
+        navigate("/home"); // Redirect to page1 for regular users
+      } else if (data.role === "ADMIN") {
+        navigate("/adminPanel"); // Redirect to page2 for admins
+      }
     });
   };
 

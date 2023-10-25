@@ -19,6 +19,9 @@ import BookForm from "./components/modifyBooks/createBooksAdmin";
 import UpdateBookForm from "./components/modifyBooks/updateBooksAdmin";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-bootstrap";
+import PublicHome from "./components/publicHome";
+import Home from "./components/home";
+import AdminProductDetail from "./pages/adminProductDetail";
 
 function App() {
   return (
@@ -26,14 +29,19 @@ function App() {
       <Navbar />
       <div className="container" style={{ width: "1200px" }}>
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<PublicHome />} />
           <Route path="/register" element={<RegistrationPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route element={<Authenticate />}>
+            <Route path="/home" element={<Home />} />
             <Route path="/adminPanelAllUser" element={<AdminPanelAllUser />} />
             <Route path="/adminpanel" element={<AdminPanel />} />
             <Route path="/addproduct" element={<AddProductPage />} />
             <Route path="/:productId" element={<ProductDetails />} />
+            <Route
+              path="/adminPanel/admin/:productId"
+              element={<AdminProductDetail />}
+            />
             <Route path="/search" element={<SearchPage />} />
             <Route path="*" element={<NotFoundPage />} />
             <Route path="/createBook" element={<BookForm />} />

@@ -46,7 +46,7 @@ const AllProductListForAdmin = ({ products, fetchProducts, loading }) => {
             <div className="product-title">{product.title}</div>
             <div className="product-author">{product.author}</div>
             <button
-              onClick={() => navigate(`/${product.id}`)}
+              onClick={() => navigate(`admin/${product.id}`)}
               className="orange-button"
               style={{ width: "80px" }}
             >

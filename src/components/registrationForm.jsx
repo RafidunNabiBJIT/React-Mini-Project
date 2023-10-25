@@ -1,148 +1,171 @@
 import { useState } from "react";
+import axiosInstance, { axiosInstanceLogin } from "../utils/axiosInstance";
 import { useNavigate } from "react-router-dom";
-import axiosInstance from "../utils/axiosInstance";
-import "../css/wholeContainer.css";
-import "../css/orangeButtonAxios.css";
-import "../css/cardRegister.css";
 
-const RegistrationForm = () => {
+const Register = () => {
   const navigate = useNavigate();
-
   const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [lastName, setLastName] = useState("");
   const [address, setAddress] = useState("");
-  const [role, setRole] = useState("");
-  const [isRegistrationDone, setIsRegistrationDone] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState();
+  const [role, setRole] = useState("CUSTOMER");
 
-  const handleRegister = (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
+    console.log("Loggin in");
 
-    const data = {
-      firstName: firstName,
-      lastName: lastName,
+    const userCredential = {
       email: email,
       password: password,
+      firstName: firstName,
+      lastName: lastName,
       address: address,
       role: role,
     };
 
-    setIsLoading(true);
-    axiosInstance
-      .post("/user/register", data)
-      .then((resp) => {
-        const data = resp.data;
-        console.log("The Response", data.token);
-        setIsRegistrationDone(true);
-        localStorage.setItem("token", data.token);
-        navigate("/");
-        // setIsLoading(false);
-      })
-      .catch((error) => {
-        console.log("Error ", error);
-        setError(error);
-        // setIsLoading(false);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+    axiosInstance.post("user/register", userCredential).then((resp) => {
+      const data = resp.data;
+
+      console.log("Response from register ", data);
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("role", data.role);
+      if (data.role === "CUSTOMER") {
+        navigate("/home"); // Redirect to page1 for regular users
+      } else if (data.role === "ADMIN") {
+        navigate("/adminPanel"); // Redirect to page2 for admins
+      }
+    });
   };
 
   return (
-    <div className="whole-container">
-      <div
-        className="card-register"
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <h1 style={{ marginTop: "-170px" }}>Registration</h1>
-        {isRegistrationDone && (
-          <h2 style={{ color: "green" }}>Successfully Done Registration</h2>
-        )}
-        {isLoading && <h1>Loading.....</h1>}
-        <form onSubmit={handleRegister}>
-          <div style={{ marginTop: "50px" }}>
-            <h4>First Name</h4>
-            <input
-              value={firstName}
-              placeholder="Enter first name"
-              onChange={(e) => {
-                setFirstName(e.target.value);
+    <div
+      className="container mt-5"
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        marginBottom: "170px",
+        width: "300px",
+      }}
+    >
+      <div>
+        <div>
+          <div>
+            <div
+              className="card-body"
+              style={{
+                width: "370px",
               }}
-            />
+            >
+              <h2
+                className="card-title text-center"
+                style={{
+                  marginTop: "10px",
+                }}
+              >
+                Register
+              </h2>
+              <form onSubmit={handleLogin}>
+                <div className="mb-3">
+                  <label
+                    htmlFor="firstName"
+                    className="form-label"
+                    style={{ marginTop: "20px" }}
+                  >
+                    First Name
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="firstName"
+                    placeholder="Enter your first name"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="lastName" className="form-label">
+                    Last Name
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="lastName"
+                    placeholder="Enter your last name"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="address" className="form-label">
+                    Address
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="address"
+                    placeholder="Enter your address"
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="email" className="form-label">
+                    Email address
+                  </label>
+                  <input
+                    type="email"
+                    className="form-control"
+                    id="email"
+                    placeholder="Enter your email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="password" className="form-label">
+                    Password
+                  </label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    id="password"
+                    placeholder="Enter your password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="role" className="form-label">
+                    Role
+                  </label>
+                  <select
+                    className="form-control"
+                    id="role"
+                    value={role}
+                    onChange={(e) => setRole(e.target.value)}
+                  >
+                    <option value="CUSTOMER">CUSTOMER</option>
+                    <option value="ADMIN">ADMIN</option>
+                  </select>
+                </div>
+                <div className="d-grid whole-container">
+                  <button
+                    type="submit"
+                    className="orange-button"
+                    style={{ marginTop: "20px", width: "90px" }}
+                  >
+                    Log In
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
-          <div style={{ marginTop: "30px" }}>
-            <h4>Last Name</h4>
-            <input
-              value={lastName}
-              placeholder="Enter last name"
-              onChange={(e) => {
-                setLastName(e.target.value);
-              }}
-            />
-          </div>
-          <div style={{ marginTop: "30px" }}>
-            <h4>Email</h4>
-            <input
-              value={email}
-              placeholder="Enter email"
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
-            />
-          </div>
-
-          <div style={{ marginTop: "30px" }}>
-            <h4>Password</h4>
-            <input
-              value={password}
-              placeholder="Enter password"
-              type="password"
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-            />
-          </div>
-
-          <div style={{ marginTop: "30px" }}>
-            <h4>Address</h4>
-            <input
-              value={address}
-              placeholder="Enter address"
-              onChange={(e) => {
-                setAddress(e.target.value);
-              }}
-            />
-          </div>
-
-          <div style={{ marginTop: "30px" }}>
-            <h4>Role</h4>
-            <input
-              value={role}
-              placeholder="Enter role"
-              onChange={(e) => {
-                setRole(e.target.value);
-              }}
-            />
-          </div>
-
-          <button
-            type="submit"
-            className="orange-button"
-            style={{ marginTop: "30px" }}
-          >
-            Register
-          </button>
-        </form>
+        </div>
       </div>
     </div>
   );
 };
 
-export default RegistrationForm;
+export default Register;

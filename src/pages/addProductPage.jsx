@@ -122,6 +122,7 @@ const AddProductPage = () => {
           </div>
 
           <button
+            onClick={handleBorrow}
             style={{ marginTop: "30px" }}
             type="submit"
             className="orange-button"

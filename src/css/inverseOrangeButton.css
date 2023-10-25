@@ -1,0 +1,17 @@
+.inverse-orange-button {
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  color: #ff6347;
+  border: 1px solid;
+  width: 20px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.inverse-orange-button:hover {
+  background-color: #ff6347;
+  border: 1px solid white;
+  color: white;
+}

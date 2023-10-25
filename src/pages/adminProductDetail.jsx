@@ -8,7 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { Modal, Button, Form } from "react-bootstrap";
 import AllReviewList from "../components/allReviewList";
 
-const ProductDetails = () => {
+const AdminProductDetail = () => {
   const { productId } = useParams();
   const [productDetails, setProductDetails] = useState();
   const [buttonText, setButtonText] = useState("");
@@ -66,11 +66,10 @@ const ProductDetails = () => {
         rating: clampedRating,
       })
       .then((resp) => {
-        // Handle success, e.g., navigate to the review page
         const newReview = {
-          review_id: resp.data.review_id, // Update with the actual response data
-          userId: Number(localStorage.getItem("id")), // Update with the current user ID
-          userName: resp.data.userName, // Update with the current user's name
+          review_id: resp.data.review_id,
+          userId: Number(localStorage.getItem("id")),
+          userName: resp.data.userName,
           bookId: productId,
           bookTitle: productDetails.title,
           comment: comment,
@@ -81,7 +80,6 @@ const ProductDetails = () => {
         handleClose();
       })
       .catch((error) => {
-        // Handle error
         toast.success("Couldn't create review. Try again.");
       });
   };
@@ -139,33 +137,7 @@ const ProductDetails = () => {
         >
           <img
             src={productDetails?.imgUrl}
-            style={{ width: "250px", marginTop: "80px" }}
-          />
-          <div
-            style={{
-              marginBottom: "40px",
-              display: "flex",
-              flexDirection: "row",
-            }}
-          >
-            <button
-              onClick={handleBorrow}
-              className="inverse-orange-button"
-              style={{ width: "140px", marginTop: "24px" }}
-            >
-              Borrow
-            </button>
-            <button
-              onClick={handleReturn}
-              className="inverse-orange-button"
-              style={{ width: "140px", marginTop: "24px" }}
-            >
-              Return
-            </button>
-          </div>
-          <ToastContainer
-            autoclose={1000}
-            position={toast.POSITION.TOP_CENTER}
+            style={{ width: "250px", marginTop: "80px", marginBottom: "80px" }}
           />
         </div>
 
@@ -177,82 +149,8 @@ const ProductDetails = () => {
           <h5 style={{ marginLeft: "40px" }}>{productDetails?.description}</h5>
         </div>
       </div>
-      <div>
-        <h2 style={{ marginLeft: "40px" }}>Reviews:</h2>
-      </div>
-
-      <div>
-        <Button
-          style={{
-            width: "160px",
-            marginTop: "40px",
-            marginLeft: "40px",
-            marginBottom: "30px",
-          }}
-          className="orange-button"
-          onClick={handleShow}
-        >
-          Post Review
-        </Button>
-
-        <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Post a Review</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <Form>
-              <Form.Group controlId="comment">
-                <Form.Label>Comment</Form.Label>
-                <Form.Control
-                  as="textarea"
-                  rows={3}
-                  value={comment}
-                  onChange={(e) => setComment(e.target.value)}
-                />
-              </Form.Group>
-              <Form.Group controlId="rating">
-                <Form.Label>Rating</Form.Label>
-                <Form.Control
-                  type="number"
-                  value={rating}
-                  onChange={(e) => {
-                    const newRating = parseInt(e.target.value);
-                    setRating(newRating);
-                  }}
-                />
-              </Form.Group>
-            </Form>
-            <span style={{ color: "red" }}>{error}</span>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button
-              style={{ width: "100px" }}
-              className="inverse-orange-button"
-              onClick={handleClose}
-            >
-              Close
-            </Button>
-            <Button
-              style={{ width: "140px" }}
-              className="orange-button"
-              onClick={handlePostReview}
-            >
-              Post Review
-            </Button>
-          </Modal.Footer>
-        </Modal>
-
-        <div
-          className="whole-container"
-          style={{
-            justifyContent: "space-between",
-          }}
-        >
-          <AllReviewList reviews={reviews} productId={productId} />
-        </div>
-      </div>
     </div>
   );
 };
 
-export default ProductDetails;
+export default AdminProductDetail;
