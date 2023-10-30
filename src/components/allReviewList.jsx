@@ -84,30 +84,43 @@ const AllReviewList = ({ reviews, productId }) => {
             <div
               className="card"
               key={review.review_id}
-              style={{ alignItems: "center", justifyContent: "center" }}
+              style={{
+                width: "1000px",
+                paddingLeft: "100px",
+              }}
             >
-              <div className="review-user">{review.userName}</div>
-              <div className="review-title">Rating: {review.rating}</div>
-              <div className="review-comment">{review.comment}</div>
+              <div className="review-user">
+                <h3>Reviewer: {review.userName}</h3>
+              </div>
+              <div className="review-title">
+                <h4>Rating: {review.rating}</h4>
+              </div>
+              <div className="review-comment">
+                <h5>{review.comment}</h5>
+              </div>
               {console.log("review eta " + review.comment)}
 
               {loggedInUserId === review.userId && (
                 <div
-                  className="whole-container"
                   style={{
+                    display: "flex",
                     flexDirection: "column",
-                    alignContent: "center",
-                    justifyContent: "center",
                   }}
                 >
                   <input
+                    style={{ width: "340px", height: "50px" }}
                     type="text"
                     name="comment"
                     placeholder="Edit Comment"
                     value={editedReviews[review.review_id]?.comment || ""}
                     onChange={(e) => handleInputChange(e, review.review_id)}
                   />
-                  <label htmlFor={`rating-${review.review_id}`}>Rating:</label>
+                  <label
+                    style={{ widht: "100px", marginRight: "40px" }}
+                    htmlFor={`rating-${review.review_id}`}
+                  >
+                    Rating:
+                  </label>
                   <select
                     id={`rating-${review.review_id}`}
                     name="rating"
@@ -129,16 +142,17 @@ const AllReviewList = ({ reviews, productId }) => {
                   >
                     Edit
                   </button>
+
+                  {loggedInUserId === review.userId && (
+                    <button
+                      onClick={() => deleteReview(review.review_id)}
+                      className="orange-button"
+                      style={{ width: "110px" }}
+                    >
+                      Delete
+                    </button>
+                  )}
                 </div>
-              )}
-              {loggedInUserId === review.userId && (
-                <button
-                  onClick={() => deleteReview(review.review_id)}
-                  className="orange-button"
-                  style={{ width: "110px" }}
-                >
-                  Delete
-                </button>
               )}
             </div>
           ))}

@@ -58,6 +58,20 @@ const ProductDetails = () => {
     setError("");
   };
 
+  const handleReserve = () => {
+    axiosInstance
+      .post(`books/${productId}/reserve`)
+      .then((resp) => {
+        notifySuccess("The book has been reserved.");
+        // Update the button or availability state as needed
+        // You can set a state variable like isAvailable to false
+        setIsAvailable(false);
+      })
+      .catch((error) => {
+        notifySuccess("The book is already reserved.");
+      });
+  };
+
   const handlePostReview = () => {
     const clampedRating = Math.min(5, Math.max(0, rating));
     axiosInstance
@@ -116,6 +130,20 @@ const ProductDetails = () => {
     setToastMessage(toastMessage);
   };
 
+  const handleCancelReservation = () => {
+    axiosInstance
+      .post(`books/${productId}/cancel-reservation`)
+      .then((resp) => {
+        notifySuccess("The reservation has been canceled.");
+        // Update the button or availability state as needed
+        // You can set a state variable like isAvailable to true
+        setIsAvailable(true);
+      })
+      .catch((error) => {
+        notifySuccess("The reservation canceled.");
+      });
+  };
+
   return (
     <div
       style={{
@@ -132,7 +160,6 @@ const ProductDetails = () => {
       >
         <div
           style={{
-            marginBottom: "10px",
             display: "flex",
             flexDirection: "column",
           }}
@@ -150,8 +177,8 @@ const ProductDetails = () => {
           >
             <button
               onClick={handleBorrow}
-              className="inverse-orange-button"
-              style={{ width: "140px", marginTop: "24px" }}
+              className="orange-button"
+              style={{ width: "140px", marginTop: "24px", marginRight: "15px" }}
             >
               Borrow
             </button>
@@ -161,6 +188,28 @@ const ProductDetails = () => {
               style={{ width: "140px", marginTop: "24px" }}
             >
               Return
+            </button>
+          </div>
+          <div
+            style={{
+              marginBottom: "10px",
+              display: "flex",
+              flexDirection: "row",
+            }}
+          >
+            <button
+              onClick={handleReserve}
+              className="orange-button"
+              style={{ width: "140px", marginRight: "15px" }}
+            >
+              Reserve
+            </button>
+            <button
+              onClick={handleCancelReservation}
+              className="inverse-orange-button"
+              style={{ width: "140px" }}
+            >
+              Cancel
             </button>
           </div>
           <ToastContainer

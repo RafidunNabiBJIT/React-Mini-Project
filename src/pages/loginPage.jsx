@@ -1,34 +1,43 @@
 import { useState } from "react";
 import axiosInstance, { axiosInstanceLogin } from "../utils/axiosInstance";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    console.log("Loggin in");
 
     const userCredential = {
       email: email,
       password: password,
     };
 
-    axiosInstance.post("user/login", userCredential).then((resp) => {
+    try {
+      const resp = await axiosInstance.post("user/login", userCredential);
       const data = resp.data;
+      console.log("Response from login", data);
 
-      console.log("Response from login ", data);
       localStorage.setItem("token", data.token);
+      console.log("Set korar shomoy role: " + data.role);
       localStorage.setItem("role", data.role);
+      console.log(localStorage.getItem("role"));
       localStorage.setItem("id", data.id);
+
       if (data.role === "CUSTOMER") {
         navigate("/home"); // Redirect to page1 for regular users
       } else if (data.role === "ADMIN") {
         navigate("/adminPanel"); // Redirect to page2 for admins
       }
-    });
+    } catch (error) {
+      console.error("Login failed:", error);
+      setError("Invalid email or password. Please try again.");
+    }
   };
 
   return (
@@ -59,6 +68,9 @@ const Login = () => {
               >
                 Login
               </h2>
+              {error && (
+                <p style={{ color: "red", marginTop: "10px" }}>{error}</p>
+              )}
               <form onSubmit={handleLogin}>
                 <div className="mb-3">
                   <label

@@ -52,7 +52,6 @@ function AdminPanel() {
         setShowCreateBookModal(false);
         setBooks([...books, response.data]);
         toast.success("Book created successfully!");
-        fetchBooks();
       })
       .catch((error) => {
         console.error("Error creating book:", error);
@@ -68,6 +67,7 @@ function AdminPanel() {
     removeItem,
     showAllProducts,
     fetchProducts,
+    currentlyBorrowedProducts,
   } = useProductHook();
 
   return (
@@ -198,34 +198,34 @@ function AdminPanel() {
             <button
               onClick={handleShowCreateBookModal}
               className="orange-button"
-              style={{ width: "140px", marginTop: "24px" }}
+              style={{
+                width: "140px",
+                marginTop: "24px",
+                flexDirection: "row",
+              }}
             >
               Create Book
             </button>
           </div>
           <div
             className="card whole-container"
-            style={{ height: "280px", width: "280px" }}
+            style={{ height: "280px", width: "280px", flexDirection: "row" }}
           >
+            <img
+              src={bookImg}
+              alt="Cart Image"
+              style={{
+                borderRadius: "14px 0 0 14px",
+                width: "180px",
+                height: "180px",
+              }}
+            />
             <button
-              onClick={() => navigate("/adminPanelAllUser")}
-              className="orange-button"
-              style={{ width: "200px", height: "35px", marginTop: "100px" }}
-            >
-              Borrowed Books
-            </button>
-          </div>
-
-          <div
-            className="card whole-container"
-            style={{ height: "280px", width: "280px" }}
-          >
-            <button
-              onClick={() => navigate("/createBook")}
+              onClick={() => navigate("/currentlyBorrowedBooksAdmin")}
               className="orange-button"
               style={{ width: "200px", height: "35px" }}
             >
-              Modify Books
+              Borrowed Books
             </button>
           </div>
         </div>

@@ -10,6 +10,7 @@ function BookForm() {
   const [imgUrl, setImgUrl] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
+  const [createdBook, setCreatedBook] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,7 +30,7 @@ function BookForm() {
       .post("books/create", userCredential)
       .then((resp) => {
         const data = resp.data;
-
+        setCreatedBook(data);
         console.log("Response from create book ", data);
         localStorage.setItem("token", data.token);
         navigate("/adminpanel");

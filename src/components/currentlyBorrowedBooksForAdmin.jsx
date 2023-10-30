@@ -4,7 +4,7 @@ import "../css/wholeContainer.css";
 import "../css/orangeButton.css";
 import "../css/bookCard.css";
 import { useNavigate } from "react-router-dom";
-const CurrentlyBorrowedBooks = ({ currentlyBorrowedProducts }) => {
+const CurrentlyBorrowedBooksForAdmin = ({ currentlyBorrowedProducts }) => {
   const navigate = useNavigate();
 
   return (
@@ -38,13 +38,6 @@ const CurrentlyBorrowedBooks = ({ currentlyBorrowedProducts }) => {
               <div className="product-author">
                 {currentlyBorrowedProduct.author}
               </div>
-              <button
-                onClick={() => navigate(`/${currentlyBorrowedProduct.id}`)}
-                className="orange-button"
-                style={{ width: "110px" }}
-              >
-                Details
-              </button>
             </div>
           ))}
         </div>
@@ -53,4 +46,4 @@ const CurrentlyBorrowedBooks = ({ currentlyBorrowedProducts }) => {
   );
 };
 
-export default CurrentlyBorrowedBooks;
+export default CurrentlyBorrowedBooksForAdmin;

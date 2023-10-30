@@ -10,12 +10,9 @@ import { Link, useNavigate } from "react-router-dom";
 function ColorSchemesExample() {
   const [isSearchVisible, setSearchVisible] = useState(false);
   const navigate = useNavigate();
-  const [role, setUserRole] = useState(localStorage.getItem("role"));
   const token = localStorage.getItem("token");
+  const role = localStorage.getItem("role");
 
-  useEffect(() => {
-    setUserRole(localStorage.getItem("role"));
-  }, []);
   const toggleSearch = () => {
     setSearchVisible(!isSearchVisible);
   };
@@ -23,22 +20,17 @@ function ColorSchemesExample() {
     <Navbar bg="dark" data-bs-theme="dark">
       <Container>
         <Navbar.Brand href="#home" className="nav-link">
-          Navbar
+          BookShop
         </Navbar.Brand>
 
         <Nav className="me-auto">
           {console.log("Eita kinty token:", token)}
           {console.log("Eita kintu role:", role)}
-          {/* {!token && (
+          {!token && (
             <Link to="/" className="mr-3 nav-link">
               Home
             </Link>
           )}
-          {token && role === "ADMIN" && (
-            <Link to="/" className="mr-3 nav-link">
-              Home
-            </Link>
-          )} */}
           {token && role === "ADMIN" && (
             <Link to="/adminPanel" className="mr-3 nav-link">
               Admin Panel
@@ -98,8 +90,12 @@ function ColorSchemesExample() {
                   style={{ color: "white" }}
                   onClick={() => {
                     localStorage.removeItem("token");
-                    localStorage.removeItem("role");
-                    localStorage.removeItem("id");
+
+                    // localStorage.removeItem("role");
+                    // console.log(
+                    //   "Logout korar pore role: " + localStorage.getItem("role")
+                    // );
+                    // localStorage.removeItem("id");
                     navigate("/login");
                   }}
                 >

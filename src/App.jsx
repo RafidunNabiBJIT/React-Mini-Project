@@ -22,6 +22,9 @@ import { ToastContainer } from "react-bootstrap";
 import PublicHome from "./components/publicHome";
 import Home from "./components/home";
 import AdminProductDetail from "./pages/adminProductDetail";
+import CurrentlyBorrowedBooks from "./components/currentlyBorrowedBooks";
+import CurrentlyBorrowedBooksAdmin from "./pages/currentlyBorrowedBooksAdmin";
+import AdminDataFetcher from "./pages/currentlyBorrowedBooksAdmin";
 
 function App() {
   return (
@@ -39,6 +42,10 @@ function App() {
             <Route path="/addproduct" element={<AddProductPage />} />
             <Route path="/:productId" element={<ProductDetails />} />
             <Route
+              path="/currentlyBorrowedBooksAdmin"
+              element={<AdminDataFetcher />}
+            />
+            <Route
               path="/adminPanel/admin/:productId"
               element={<AdminProductDetail />}
             />
@@ -48,13 +55,14 @@ function App() {
             <Route path="/updateBook/:bookId" element={<UpdateBookForm />} />
           </Route>
         </Routes>
-        <ToastContainer
-          position="top-center"
-          autoClose={2000}
-          pauseOnHover={false}
-        />
       </div>
+
       <Footer />
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        pauseOnHover={false}
+      />
     </div>
   );
 }

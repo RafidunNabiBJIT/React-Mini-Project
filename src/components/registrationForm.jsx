@@ -156,7 +156,7 @@ const Register = () => {
                     className="orange-button"
                     style={{ marginTop: "20px", width: "90px" }}
                   >
-                    Log In
+                    Register
                   </button>
                 </div>
               </form>
