@@ -135,8 +135,6 @@ const ProductDetails = () => {
       .post(`books/${productId}/cancel-reservation`)
       .then((resp) => {
         notifySuccess("The reservation has been canceled.");
-        // Update the button or availability state as needed
-        // You can set a state variable like isAvailable to true
         setIsAvailable(true);
       })
       .catch((error) => {
